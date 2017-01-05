@@ -1,0 +1,34 @@
+{ "name": "map-assoc-core",
+  "version": "0.1.0",
+  "description": "Just the very basics of map-assoc: Map the values of a collection (array or object) and carry the keys.",
+  "keywords": [
+    "map",
+    "array",
+    "object",
+    "assoc",
+    "associative",
+    "Object.map",
+    "keys"
+  ],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/map-assoc-core-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/map-assoc-core-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/map-assoc-core-js/issues"
+  },
+
+  "private": false, "license": "ISC",
+
+  "main": "ma-core.js",
+  "scripts": { "test": "nodejs test/usage.js" },
+  "directories": { "test": "test" },
+
+  "devDependencies": { "equal-pmb": "^0.1.0" },
+
+
+  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+}
