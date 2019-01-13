@@ -13,6 +13,15 @@ For more magic, check the `map-assoc-fancy` package.
 
 
 
+Promises support
+----------------
+
+No. Use [`p-props`][p-props] instead.
+
+  [p-props]: https://github.com/sindresorhus/p-props
+
+
+
 Usage
 -----
 from [test/usage.js](test/usage.js):

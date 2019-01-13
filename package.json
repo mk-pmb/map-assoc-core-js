@@ -1,5 +1,5 @@
 { "name": "map-assoc-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Just the very basics of map-assoc: Map the values of a collection (array or object) and carry the keys.",
   "keywords": [
     "map",
