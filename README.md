@@ -28,9 +28,9 @@ from [test/usage.js](test/usage.js):
 
 <!--#include file="test/usage.js" start="  //#u" stop="  //#r"
   outdent="  " code="javascript" -->
-<!--#verbatim lncnt="17" -->
+<!--#verbatim lncnt="20" -->
 ```javascript
-var amap = require('map-assoc-core'), eq = require('equal-pmb');
+var amap = require('map-assoc-core'), eq = require('equal-pmb'), preset;
 
 function upper(s) { return String(s).toUpperCase(); }
 function upperOrDouble(s) { return (s === +s ? s * 2 : s.toUpperCase()); }
@@ -38,9 +38,12 @@ function upperOrDouble(s) { return (s === +s ? s * 2 : s.toUpperCase()); }
 eq(amap({ cat: 'meow', dog: 'woof', lion: 'roar' }, upper),
         { cat: 'MEOW', dog: 'WOOF', lion: 'ROAR' });
 
+preset = amap(upper);
+eq(preset({ cat: 'meow', dog: 'woof', lion: 'roar' }),
+          { cat: 'MEOW', dog: 'WOOF', lion: 'ROAR' });
+
 eq(amap([ 'mon', 'tue', 'wed' ], upper),
         [ 'MON', 'TUE', 'WED' ]);
-
 eq(amap({ '0': 'mon', '1': 'tue', '2': 'wed', length: 3 }, upper),
         { '0': 'MON', '1': 'TUE', '2': 'WED', length: '3' });
 eq(amap({ '0': 'mon', '1': 'tue', '2': 'wed', length: 3 }, upperOrDouble),
@@ -56,13 +59,21 @@ eq(amap({ '0': 'mon', '1': 'tue', '2': 'wed', length: 3 }, upperOrDouble),
 Q&A
 ---
 
-  * My string/buffer is a collection, too!
-    It maps position numbers to characters/octets!
+* How is this different from `lodash.mapValues`?
 
-You're totally right, and `map-assoc-fancy` will handle
-that just as you'd expect!
+It supports presets (see usage example above).
+It preserves the array-ness or null-object-ness of inputs
+(see [test/cmp.lodash.js](test/cmp.lodash.js)).
 
-  * Can I use my GeneratorFunction as a collection?
+
+* My string/buffer is a collection, too!
+  It maps position numbers to characters/octets!
+
+You're totally right, and `map-assoc-fancy` will handle that just as you'd
+expect, i.e. map them to a String/Buffer.
+The `…-core` package (this one) will return plain objects with number keys.
+
+* Can I use my GeneratorFunction as a collection?
 
 Should work, since it should be an object, so it can hold keys, right?
 If you want to iterate over its results instead,

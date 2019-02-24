@@ -2,7 +2,13 @@
 /* -*- tab-width: 2 -*- */
 'use strict';
 
-module.exports = function (collection, iterFunc, iterCtx) {
+function aMap(collection, iterFunc, iterCtx) {
+  if (arguments.length === 1) {
+    iterFunc = collection;
+    collection = null;
+    iterCtx = this;
+    return function aMapBound(coll) { return aMap(coll, iterFunc, iterCtx); };
+  }
   iterFunc = iterFunc.bind(iterCtx);
   if (Array.isArray(collection)) { return collection.map(iterFunc); }
   var srcProto = Object.getPrototypeOf(collection),
@@ -11,4 +17,6 @@ module.exports = function (collection, iterFunc, iterCtx) {
     results[key] = iterFunc(collection[key], key, collection);
   });
   return results;
-};
+}
+
+module.exports = aMap;
