@@ -3,6 +3,7 @@
 'use strict';
 
 (function readmeDemo() {
+  function eachFor(i, c) { c.forEach(i); }
   //#u
   var amap = require('map-assoc-core'), eq = require('equal-pmb'), preset;
 
@@ -22,6 +23,12 @@
           { '0': 'MON', '1': 'TUE', '2': 'WED', length: '3' });
   eq(amap({ '0': 'mon', '1': 'tue', '2': 'wed', length: 3 }, upperOrDouble),
           { '0': 'MON', '1': 'TUE', '2': 'WED', length: 6 });
+
+  eq(preset('bar'), { '0': 'B', '1': 'A', '2': 'R' });
+  eachFor(function testFalseyValues(x) {
+    eq(amap(x, upper), x);
+    eq(preset(x), x);
+  }, [null, undefined, false, 0, NaN, '']);
   //#r
 
 }());

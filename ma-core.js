@@ -9,6 +9,7 @@ function aMap(collection, iterFunc, iterCtx) {
     iterCtx = this;
     return function aMapBound(coll) { return aMap(coll, iterFunc, iterCtx); };
   }
+  if (!collection) { return collection; }
   iterFunc = iterFunc.bind(iterCtx);
   if (Array.isArray(collection)) { return collection.map(iterFunc); }
   var srcProto = Object.getPrototypeOf(collection),

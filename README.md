@@ -24,11 +24,12 @@ No. Use [`p-props`][p-props] instead.
 
 Usage
 -----
+
 from [test/usage.js](test/usage.js):
 
 <!--#include file="test/usage.js" start="  //#u" stop="  //#r"
   outdent="  " code="javascript" -->
-<!--#verbatim lncnt="20" -->
+<!--#verbatim lncnt="26" -->
 ```javascript
 var amap = require('map-assoc-core'), eq = require('equal-pmb'), preset;
 
@@ -48,6 +49,12 @@ eq(amap({ '0': 'mon', '1': 'tue', '2': 'wed', length: 3 }, upper),
         { '0': 'MON', '1': 'TUE', '2': 'WED', length: '3' });
 eq(amap({ '0': 'mon', '1': 'tue', '2': 'wed', length: 3 }, upperOrDouble),
         { '0': 'MON', '1': 'TUE', '2': 'WED', length: 6 });
+
+eq(preset('bar'), { '0': 'B', '1': 'A', '2': 'R' });
+eachFor(function testFalseyValues(x) {
+  eq(amap(x, upper), x);
+  eq(preset(x), x);
+}, [null, undefined, false, 0, NaN, '']);
 ```
 <!--/include-->
 
@@ -72,6 +79,7 @@ It preserves the array-ness or null-object-ness of inputs
 You're totally right, and `map-assoc-fancy` will handle that just as you'd
 expect, i.e. map them to a String/Buffer.
 The `…-core` package (this one) will return plain objects with number keys.
+(Exception: The empty string is returned verbatim.)
 
 * Can I use my GeneratorFunction as a collection?
 

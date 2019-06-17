@@ -1,5 +1,5 @@
 { "name": "map-assoc-core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Just the very basics of map-assoc: Map the values of a collection (array or object) and carry the keys.",
   "keywords": [
     "map",
@@ -27,7 +27,10 @@
   "scripts": { "test": "nodejs test/all.js" },
   "directories": { "test": "test" },
 
-  "devDependencies": { "equal-pmb": "^0.1.0" },
+  "devDependencies": {
+    "equal-pmb": "^0.1.19",
+    "lodash.mapvalues": "^4.6.0"
+  },
 
 
   "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"

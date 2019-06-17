@@ -3,6 +3,7 @@
 'use strict';
 
 function makeNullObj(seed) { return Object.assign(Object.create(null), seed); }
+function whoops() { throw new Error('I should never have been called!'); }
 
 var aMap = require('map-assoc-core'), eq = require('equal-pmb'),
   loMV = require('lodash.mapvalues'),
@@ -64,6 +65,23 @@ var aMap = require('map-assoc-core'), eq = require('equal-pmb'),
   eq(getProto(ma), Object.prototype);
   eq(lo, ma);
   eq(getProto(lo), Object.prototype);
+}());
+
+
+(function testFalseys() {
+  var inputs = [
+    undefined,
+    null,
+    false,
+    0,
+    '',
+    NaN,
+  ];
+  function check(x) {
+    eq(aMap(x, whoops), x);
+    eq(loMV(x, whoops), {});
+  }
+  inputs.forEach(check);
 }());
 
 
